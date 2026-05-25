@@ -153,7 +153,7 @@
     .project-card:hover { transform: translateY(-6px); border-color: rgba(0, 242, 254, 0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
     .project-card:hover::before { height: 100%; }
     
-    .project-id { font-family: var(--font-mono); font-size: 12px; color: var(--accent-cyan); margin-bottom: 1rem; block; }
+    .project-id { font-family: var(--font-mono); font-size: 12px; color: var(--accent-cyan); margin-bottom: 1rem; display: block; }
     .project-card h3 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 1rem; }
     .project-card p { color: var(--text-muted); font-size: 14px; margin-bottom: 2rem; flex-grow: 1; font-weight: 300; }
     
@@ -333,7 +333,7 @@
         <div class="project-tech">
           <span class="tech-tag">Python</span><span class="tech-tag">Flask</span><span class="tech-tag">scikit-learn</span><span class="tech-tag">React</span>
         </div>
-        <a href="https://github.com/FouadElOuafy" target="_blank" class="project-link">Code source ↗</a>
+        <a href="https://github.com/FouadElOuafy/spam-detector" target="_blank" class="project-link">Code source ↗</a>
       </div>
       <div class="project-card">
         <span class="project-id">PROJET // 02</span>
@@ -342,7 +342,7 @@
         <div class="project-tech">
           <span class="tech-tag">React</span><span class="tech-tag">Express.js</span><span class="tech-tag">MongoDB</span><span class="tech-tag">JWT</span>
         </div>
-        <a href="https://github.com/FouadElOuafy" target="_blank" class="project-link">Code source ↗</a>
+        <a href="https://github.com/FouadElOuafy/gestion-personnel" target="_blank" class="project-link">Code source ↗</a>
       </div>
       <div class="project-card">
         <span class="project-id">PROJET // 03</span>
@@ -351,7 +351,7 @@
         <div class="project-tech">
           <span class="tech-tag">Python</span><span class="tech-tag">Flask</span><span class="tech-tag">SQLite</span><span class="tech-tag">React</span><span class="tech-tag">JWT</span>
         </div>
-        <a href="https://github.com/FouadElOuafy" target="_blank" class="project-link">Code source ↗</a>
+        <a href="https://github.com/FouadElOuafy/detection-consultation" target="_blank" class="project-link">Code source ↗</a>
       </div>
       <div class="project-card">
         <span class="project-id">PROJET // 04</span>
@@ -360,7 +360,7 @@
         <div class="project-tech">
           <span class="tech-tag">Python</span><span class="tech-tag">Flask</span><span class="tech-tag">scikit-learn</span><span class="tech-tag">OpenWeatherMap</span>
         </div>
-        <a href="https://github.com/FouadElOuafy" target="_blank" class="project-link">Code source ↗</a>
+        <a href="https://github.com/FouadElOuafy/air-quality-prediction" target="_blank" class="project-link">Code source ↗</a>
       </div>
     </div>
   </section>
@@ -409,18 +409,18 @@
           </a>
         </div>
       </div>
-      <form class="contact-form" onsubmit="event.preventDefault(); alert('Message simulé ! Pour recevoir de vrais mails, vous pouvez lier ce formulaire à un service comme Formspree.');">
+      <form class="contact-form" action="https://formspree.io/f/moqzjkbj" method="POST">
         <div class="form-group">
           <label>Nom Complet</label>
-          <input type="text" placeholder="Votre nom" required>
+          <input type="text" name="name" placeholder="Votre nom" required>
         </div>
         <div class="form-group">
           <label>Adresse Email</label>
-          <input type="email" placeholder="votre@email.com" required>
+          <input type="email" name="_replyto" placeholder="votre@email.com" required>
         </div>
         <div class="form-group">
           <label>Message</label>
-          <textarea rows="5" placeholder="Votre texte ici..." required></textarea>
+          <textarea name="message" rows="5" placeholder="Votre texte ici..." required></textarea>
         </div>
         <button type="submit" class="btn btn-primary" style="width: fit-content; margin-top: 1rem;">Envoyer le message</button>
       </form>
