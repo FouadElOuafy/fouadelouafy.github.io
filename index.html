@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   
   <style>
-    /* --- VARIABLES & THEME (Premium Tech Dark) --- */
     :root {
       --bg-main: #060913;
       --bg-surface: rgba(16, 22, 39, 0.6);
@@ -19,7 +18,6 @@
       --text-primary: #f1f5f9;
       --text-muted: #94a3b8;
       --border-color: rgba(0, 242, 254, 0.12);
-      --glow-color: rgba(0, 242, 254, 0.03);
       --font-sans: 'Plus Jakarta Sans', sans-serif;
       --font-mono: 'Space Mono', monospace;
     }
@@ -38,13 +36,12 @@
       overflow-x: hidden;
     }
 
-    /* --- SCROLLBAR --- */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--bg-main); }
     ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
 
-    /* --- NAVIGATION --- */
+    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; width: 100%; height: 76px; z-index: 1000;
       background: rgba(6, 9, 19, 0.75); backdrop-filter: blur(16px);
@@ -52,10 +49,7 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 4rem;
     }
-    .logo {
-      font-family: var(--font-mono); font-size: 20px; font-weight: 700;
-      color: var(--text-primary); text-decoration: none; letter-spacing: -1px;
-    }
+    .logo { font-family: var(--font-mono); font-size: 20px; font-weight: 700; color: var(--text-primary); text-decoration: none; letter-spacing: -1px; }
     .logo span { color: var(--accent-cyan); }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
@@ -63,157 +57,139 @@
       text-decoration: none; transition: all 0.3s ease;
       font-family: var(--font-mono); position: relative; padding: 0.5rem 0;
     }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
-      background: var(--accent-cyan); transition: width 0.3s ease;
-    }
+    .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--accent-cyan); transition: width 0.3s ease; }
     .nav-links a:hover { color: var(--text-primary); }
     .nav-links a:hover::after { width: 100%; }
 
-    /* --- LAYOUT GLOBAL --- */
+    /* LAYOUT */
     section { padding: 8rem 4rem 4rem 4rem; max-width: 1200px; margin: 0 auto; }
     .section-header { margin-bottom: 4rem; }
-    .section-tag {
-      font-family: var(--font-mono); font-size: 13px; color: var(--accent-cyan);
-      text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; display: block;
-    }
+    .section-tag { font-family: var(--font-mono); font-size: 13px; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; display: block; }
     .section-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; color: #fff; }
 
-    /* --- HERO SECTION --- */
+    /* HERO */
     #hero {
-      min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
       padding: 0 4rem; position: relative; max-width: 1200px; margin: 0 auto;
     }
+
+    /* AVATAR */
+    .avatar-wrapper {
+      margin-bottom: 2.5rem;
+      display: flex; flex-direction: column; align-items: center; gap: 1rem;
+    }
+    .avatar {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 36px; font-weight: 700;
+      color: #060913; letter-spacing: -2px;
+      box-shadow: 0 0 0 4px rgba(0, 242, 254, 0.15), 0 0 40px rgba(0, 242, 254, 0.2);
+      position: relative;
+    }
+    .avatar::after {
+      content: ''; position: absolute;
+      width: 18px; height: 18px; background: #22c55e;
+      border-radius: 50%; border: 3px solid var(--bg-main);
+      bottom: 6px; right: 6px;
+    }
+
     .hero-status {
       display: inline-flex; align-items: center; gap: 10px;
       background: rgba(0, 242, 254, 0.06); border: 1px solid rgba(0, 242, 254, 0.2);
-      padding: 6px 16px; border-radius: 100px; width: fit-content; margin-bottom: 2rem;
+      padding: 6px 16px; border-radius: 100px; width: fit-content;
     }
-    .status-dot { width: 8px; height: 8px; background: var(--accent-cyan); border-radius: 50%; box-shadow: 0 0 12px var(--accent-cyan); }
+    .status-dot { width: 8px; height: 8px; background: var(--accent-cyan); border-radius: 50%; box-shadow: 0 0 12px var(--accent-cyan); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
     .status-text { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-cyan); }
-    
+
     .hero-title { font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -3px; margin-bottom: 1.5rem; }
     .hero-title span { background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .hero-subtitle { font-family: var(--font-mono); font-size: 16px; color: var(--text-muted); margin-bottom: 1.5rem; }
-    .hero-desc { font-size: 18px; color: var(--text-muted); max-width: 640px; margin-bottom: 3rem; font-weight: 300; }
-    
-    .hero-actions { display: flex; gap: 1.5rem; align-items: center; }
-    .btn {
-      padding: 14px 32px; font-weight: 600; font-size: 14px; border-radius: 8px;
-      text-decoration: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      display: inline-flex; align-items: center; gap: 8px;
-    }
+    .hero-desc { font-size: 18px; color: var(--text-muted); max-width: 640px; margin: 0 auto 3rem; font-weight: 300; }
+    .hero-actions { display: flex; gap: 1.5rem; align-items: center; justify-content: center; }
+    .btn { padding: 14px 32px; font-weight: 600; font-size: 14px; border-radius: 8px; text-decoration: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: none; }
     .btn-primary { background: var(--accent-cyan); color: #060913; box-shadow: 0 4px 20px rgba(0, 242, 254, 0.15); }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0, 242, 254, 0.3); opacity: 0.95; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0, 242, 254, 0.3); }
     .btn-secondary { border: 1px solid var(--border-color); color: var(--text-primary); background: transparent; }
-    .btn-secondary:hover { border-color: var(--accent-cyan); background: rgba(0, 242, 254, 0.02); color: var(--accent-cyan); }
+    .btn-secondary:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
 
-    /* --- ABOUT --- */
+    /* ABOUT */
     .about-container { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: start; }
     .about-bio p { margin-bottom: 1.5rem; font-size: 16px; color: var(--text-muted); }
     .about-facts { display: flex; flex-direction: column; gap: 1.2rem; }
-    .fact-card {
-      background: var(--bg-surface); border: 1px solid var(--border-color);
-      padding: 1.25rem 1.5rem; border-radius: 12px; display: flex; gap: 1.2rem; align-items: center;
-    }
-    .fact-icon { font-size: 20px; width: 44px; height: 44px; background: rgba(0, 242, 254, 0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent-cyan); }
+    .fact-card { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 1.25rem 1.5rem; border-radius: 12px; display: flex; gap: 1.2rem; align-items: center; }
+    .fact-icon { font-size: 20px; width: 44px; height: 44px; background: rgba(0, 242, 254, 0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
     .fact-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-muted); }
     .fact-value { font-weight: 600; font-size: 15px; color: #fff; }
 
-    /* --- SKILLS --- */
+    /* SKILLS */
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
-    .skills-card {
-      background: var(--bg-surface); border: 1px solid var(--border-color);
-      border-radius: 16px; padding: 2rem; position: relative; transition: all 0.3s ease;
-    }
-    .skills-card:hover { border-color: rgba(0, 242, 254, 0.4); transform: translateY(-4px); background: rgba(16, 22, 39, 0.8); }
+    .skills-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; transition: all 0.3s ease; }
+    .skills-card:hover { border-color: rgba(0, 242, 254, 0.4); transform: translateY(-4px); }
     .skills-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
     .skills-card-icon { color: var(--accent-cyan); font-size: 18px; }
     .skills-card h3 { font-size: 16px; font-weight: 700; color: #fff; }
     .tags-container { display: flex; flex-wrap: wrap; gap: 8px; }
-    .skill-tag {
-      font-family: var(--font-mono); font-size: 12px; padding: 6px 12px;
-      background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05);
-      color: var(--text-muted); border-radius: 6px; transition: all 0.2s;
-    }
+    .skill-tag { font-family: var(--font-mono); font-size: 12px; padding: 6px 12px; background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); border-radius: 6px; transition: all 0.2s; }
     .skills-card:hover .skill-tag { border-color: rgba(0, 242, 254, 0.15); color: #fff; }
 
-    /* --- PROJECTS --- */
+    /* PROJECTS */
     .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
     .project-card {
       background: var(--bg-surface); border: 1px solid var(--border-color);
       border-radius: 16px; padding: 2.5rem; display: flex; flex-direction: column;
       position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .project-card::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 0;
-      background: linear-gradient(to bottom, var(--accent-blue), var(--accent-cyan));
-      transition: height 0.3s ease;
-    }
+    .project-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 0; background: linear-gradient(to bottom, var(--accent-blue), var(--accent-cyan)); transition: height 0.3s ease; }
     .project-card:hover { transform: translateY(-6px); border-color: rgba(0, 242, 254, 0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
     .project-card:hover::before { height: 100%; }
-    
+    .project-card.featured { border-color: rgba(0, 242, 254, 0.25); background: rgba(0, 242, 254, 0.02); }
+    .project-card.featured::after { content: '★ Latest'; position: absolute; top: 1rem; right: 1rem; font-family: var(--font-mono); font-size: 10px; color: var(--accent-cyan); background: rgba(0, 242, 254, 0.1); padding: 4px 10px; border-radius: 100px; border: 1px solid rgba(0, 242, 254, 0.2); }
     .project-id { font-family: var(--font-mono); font-size: 12px; color: var(--accent-cyan); margin-bottom: 1rem; display: block; }
     .project-card h3 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 1rem; }
     .project-card p { color: var(--text-muted); font-size: 14px; margin-bottom: 2rem; flex-grow: 1; font-weight: 300; }
-    
     .project-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2rem; }
     .tech-tag { font-family: var(--font-mono); font-size: 11px; color: var(--accent-cyan); background: rgba(0, 242, 254, 0.05); padding: 4px 10px; border-radius: 4px; }
-    
-    .project-link {
-      font-family: var(--font-mono); font-size: 12px; color: #fff; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 6px; width: fit-content; transition: color 0.2s;
-    }
+    .project-link { font-family: var(--font-mono); font-size: 12px; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; width: fit-content; transition: color 0.2s; }
     .project-link:hover { color: var(--accent-cyan); }
 
-    /* --- EDUCATION (Timeline Moderne) --- */
+    /* TIMELINE */
     .timeline { position: relative; max-width: 800px; margin-left: 1rem; }
     .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px; background: var(--border-color); }
     .timeline-item { position: relative; padding-left: 2.5rem; margin-bottom: 3.5rem; }
     .timeline-item:last-child { margin-bottom: 0; }
-    .timeline-dot {
-      position: absolute; left: -5px; top: 8px; width: 11px; height: 11px;
-      background: var(--bg-main); border: 2px solid var(--accent-cyan); border-radius: 50%;
-      box-shadow: 0 0 10px var(--accent-cyan);
-    }
+    .timeline-dot { position: absolute; left: -5px; top: 8px; width: 11px; height: 11px; background: var(--bg-main); border: 2px solid var(--accent-cyan); border-radius: 50%; box-shadow: 0 0 10px var(--accent-cyan); }
     .timeline-date { font-family: var(--font-mono); font-size: 12px; color: var(--accent-cyan); margin-bottom: 0.5rem; }
     .timeline-title { font-size: 18px; font-weight: 700; color: #fff; }
     .timeline-school { color: var(--text-muted); font-size: 14px; }
 
-    /* --- CONTACT --- */
+    /* CONTACT */
     .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
     .contact-text p { color: var(--text-muted); font-size: 16px; margin-bottom: 2.5rem; }
     .contact-list { display: flex; flex-direction: column; gap: 1.5rem; }
-    .contact-card {
-      background: var(--bg-surface); border: 1px solid var(--border-color); padding: 1.5rem;
-      border-radius: 12px; display: flex; align-items: center; gap: 1.5rem; text-decoration: none; transition: all 0.3s;
-    }
-    .contact-card:hover { border-color: var(--accent-cyan); transform: translateX(6px); background: rgba(16, 22, 39, 0.8); }
+    .contact-card { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 12px; display: flex; align-items: center; gap: 1.5rem; text-decoration: none; transition: all 0.3s; }
+    .contact-card:hover { border-color: var(--accent-cyan); transform: translateX(6px); }
     .contact-details span { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-transform: uppercase; }
     .contact-details p { font-size: 15px; font-weight: 600; color: #fff; }
-    
-    /* Contact Form Simple */
     .contact-form { display: flex; flex-direction: column; gap: 1.2rem; background: var(--bg-surface); border: 1px solid var(--border-color); padding: 2.5rem; border-radius: 16px; }
     .form-group { display: flex; flex-direction: column; gap: 6px; }
     .form-group label { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); text-transform: uppercase; }
-    .form-group input, .form-group textarea {
-      background: var(--bg-card); border: 1px solid rgba(255,255,255,0.08); padding: 14px; border-radius: 8px;
-      color: #fff; font-family: var(--font-sans); font-size: 14px; outline: none; transition: border-color 0.2s;
-    }
+    .form-group input, .form-group textarea { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.08); padding: 14px; border-radius: 8px; color: #fff; font-family: var(--font-sans); font-size: 14px; outline: none; transition: border-color 0.2s; }
     .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-cyan); }
 
-    /* --- FOOTER --- */
+    /* FOOTER */
     footer { text-align: center; padding: 3rem; margin-top: 6rem; border-top: 1px solid var(--border-color); font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
     footer span { color: var(--accent-cyan); }
 
-    /* --- RESPONSIVE --- */
+    /* RESPONSIVE */
     @media (max-width: 968px) {
       nav { padding: 0 2rem; }
       .nav-links { display: none; }
       section { padding: 6rem 2rem 2rem 2rem; }
       #hero { padding: 0 2rem; }
       .about-container, .projects-grid, .contact-container { grid-template-columns: 1fr; gap: 2.5rem; }
-      .contact-form { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -222,67 +198,75 @@
   <nav>
     <a href="#" class="logo">FOUAD<span>.</span></a>
     <ul class="nav-links">
-      <li><a href="#about">// À propos</a></li>
-      <li><a href="#skills">// Compétences</a></li>
-      <li><a href="#projects">// Projets</a></li>
-      <li><a href="#education">// Parcours</a></li>
+      <li><a href="#about">// About</a></li>
+      <li><a href="#skills">// Skills</a></li>
+      <li><a href="#projects">// Projects</a></li>
+      <li><a href="#education">// Education</a></li>
       <li><a href="#contact">// Contact</a></li>
     </ul>
   </nav>
 
   <div id="hero">
-    <div class="hero-status">
-      <span class="status-dot"></span>
-      <span class="status-text">Disponible pour opportunités / Stages</span>
+
+    <!-- Avatar centré -->
+    <div class="avatar-wrapper">
+      <div class="avatar">FE</div>
+      <div class="hero-status">
+        <span class="status-dot"></span>
+        <span class="status-text">Available for Internships & Opportunities</span>
+      </div>
     </div>
+
     <h1 class="hero-title">Fouad <span>El Ouafy</span></h1>
-    <p class="hero-subtitle">// Étudiant en Master · Big Data & Intelligent Systems</p>
+    <p class="hero-subtitle">// Master's Student · Big Data & Intelligent Systems</p>
     <p class="hero-desc">
-      Passionné par le Machine Learning, le Développement Web et la Cybersécurité.
-      Je conçois et déploie des solutions combinant des modèles prédictifs intelligents et des interfaces web modernes.
+      Passionate about Machine Learning, Full Stack Web Development, and Cybersecurity.
+      I design and deploy solutions combining intelligent predictive models with modern web interfaces.
     </p>
     <div class="hero-actions">
-      <a href="#projects" class="btn btn-primary">Découvrir mes projets →</a>
-      <a href="#contact" class="btn btn-secondary">Me contacter</a>
+      <a href="#projects" class="btn btn-primary">Explore my projects →</a>
+      <a href="#contact" class="btn btn-secondary">Get in touch</a>
     </div>
   </div>
 
+  <!-- ABOUT -->
   <section id="about">
     <div class="section-header">
-      <span class="section-tag">01 / Profil</span>
-      <h2 class="section-title">Présentation</h2>
+      <span class="section-tag">01 / Profile</span>
+      <h2 class="section-title">About Me</h2>
     </div>
     <div class="about-container">
       <div class="about-bio">
-        <p>Je suis actuellement étudiant en Master <strong>Big Data & Systèmes Intelligents (BDSI)</strong> à l'Université Sidi Mohamed Ben Abdellah, Fès. Mon parcours est guidé par la volonté de donner du sens aux données complexes grâce à l'intelligence artificielle.</p>
-        <p>Mon expertise se situe à l'intersection de l'ingénierie des données et du développement full-stack. J'aime relever des défis techniques allant de l'optimisation de modèles de NLP (Natural Language Processing) à la sécurisation des architectures applicatives.</p>
-        <p>Motivé par l'apprentissage continu, je recherche activement des collaborations stimulantes et des projets de fin d'études dans le domaine de l'IA et de la Data.</p>
+        <p>I am currently a Master's student in <strong>Big Data & Intelligent Systems (BDSI)</strong> at Sidi Mohamed Ben Abdellah University, Fès. My journey is driven by the desire to make sense of complex data through artificial intelligence.</p>
+        <p>My expertise lies at the intersection of data engineering and full-stack development. I enjoy tackling technical challenges ranging from NLP model optimization to securing application architectures.</p>
+        <p>Motivated by continuous learning, I am actively looking for stimulating collaborations and final-year internship opportunities in AI and Data Science.</p>
       </div>
       <div class="about-facts">
         <div class="fact-card">
           <div class="fact-icon">🎓</div>
-          <div class="fact-details"><span>Formation</span><p>Master BDSI — USMBA Fès</p></div>
+          <div class="fact-details"><span class="fact-label">Education</span><p class="fact-value">Master BDSI — USMBA Fès</p></div>
         </div>
         <div class="fact-card">
           <div class="fact-icon">📍</div>
-          <div class="fact-details"><span>Localisation</span><p>Fès, Maroc</p></div>
+          <div class="fact-details"><span class="fact-label">Location</span><p class="fact-value">Fès, Morocco</p></div>
         </div>
         <div class="fact-card">
           <div class="fact-icon">🌐</div>
-          <div class="fact-details"><span>Langues</span><p>Arabe · Français · Anglais</p></div>
+          <div class="fact-details"><span class="fact-label">Languages</span><p class="fact-value">Arabic · French · English</p></div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- SKILLS -->
   <section id="skills">
     <div class="section-header">
       <span class="section-tag">02 / Expertise</span>
-      <h2 class="section-title">Compétences & Outils</h2>
+      <h2 class="section-title">Skills & Tools</h2>
     </div>
     <div class="skills-grid">
       <div class="skills-card">
-        <div class="skills-card-header"><span class="skills-card-icon">⌨️</span><h3>Langages</h3></div>
+        <div class="skills-card-header"><span class="skills-card-icon">⌨️</span><h3>Languages</h3></div>
         <div class="tags-container">
           <span class="skill-tag">Python</span><span class="skill-tag">Java</span><span class="skill-tag">PHP</span><span class="skill-tag">C</span><span class="skill-tag">JavaScript</span>
         </div>
@@ -296,7 +280,7 @@
       <div class="skills-card">
         <div class="skills-card-header"><span class="skills-card-icon">🖥️</span><h3>Frontend</h3></div>
         <div class="tags-container">
-          <span class="skill-tag">React</span><span class="skill-tag">Vite</span><span class="skill-tag">Bootstrap</span>
+          <span class="skill-tag">React</span><span class="skill-tag">Vite</span><span class="skill-tag">Leaflet.js</span><span class="skill-tag">Bootstrap</span>
         </div>
       </div>
       <div class="skills-card">
@@ -306,94 +290,113 @@
         </div>
       </div>
       <div class="skills-card">
-        <div class="skills-card-header"><span class="skills-card-icon">🔒</span><h3>Sécurité</h3></div>
+        <div class="skills-card-header"><span class="skills-card-icon">🗄️</span><h3>Databases</h3></div>
         <div class="tags-container">
-          <span class="skill-tag">JWT Auth</span><span class="skill-tag">Cybersecurity basics</span>
+          <span class="skill-tag">Neo4j</span><span class="skill-tag">MongoDB</span><span class="skill-tag">SQLite</span><span class="skill-tag">MySQL</span>
         </div>
       </div>
       <div class="skills-card">
-        <div class="skills-card-header"><span class="skills-card-icon">🛠️</span><h3>Outils & Environnements</h3></div>
+        <div class="skills-card-header"><span class="skills-card-icon">🛠️</span><h3>Tools & Environments</h3></div>
         <div class="tags-container">
-          <span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">VS Code</span><span class="skill-tag">PyCharm</span>
+          <span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">VS Code</span><span class="skill-tag">OpenStreetMap</span><span class="skill-tag">OSRM</span>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- PROJECTS -->
   <section id="projects">
     <div class="section-header">
-      <span class="section-tag">03 / Projets</span>
-      <h2 class="section-title">Travaux Récents</h2>
+      <span class="section-tag">03 / Projects</span>
+      <h2 class="section-title">Recent Work</h2>
     </div>
     <div class="projects-grid">
+
       <div class="project-card">
-        <span class="project-id">PROJET // 01</span>
+        <span class="project-id">PROJECT // 01</span>
         <h3>Spam Detector</h3>
-        <p>Application intelligente de détection de spams exploitant un modèle prédictif entraîné via scikit-learn, exposé via une API robuste avec Flask et servi par une interface utilisateur réactive en React.</p>
+        <p>Intelligent spam detection application leveraging a predictive model trained with scikit-learn, exposed via a robust Flask API and served by a reactive React interface.</p>
         <div class="project-tech">
           <span class="tech-tag">Python</span><span class="tech-tag">Flask</span><span class="tech-tag">scikit-learn</span><span class="tech-tag">React</span>
         </div>
-        <a href="https://github.com/FouadElOuafy/spam-detector" target="_blank" class="project-link">Code source ↗</a>
+        <a href="https://github.com/FouadElOuafy/spam-detector" target="_blank" class="project-link">Source code ↗</a>
       </div>
+
       <div class="project-card">
-        <span class="project-id">PROJET // 02</span>
-        <h3>Gestion du Personnel</h3>
-        <p>Plateforme RH complète permettant le suivi et la gestion des collaborateurs en entreprise. Intègre un système d'authentification sécurisé par jetons JWT et un dashboard analytique mis à jour en temps réel.</p>
+        <span class="project-id">PROJECT // 02</span>
+        <h3>Personnel Management</h3>
+        <p>Complete HR platform for tracking and managing company employees. Features a secure JWT token authentication system and a real-time analytics dashboard.</p>
         <div class="project-tech">
           <span class="tech-tag">React</span><span class="tech-tag">Express.js</span><span class="tech-tag">MongoDB</span><span class="tech-tag">JWT</span>
         </div>
-        <a href="https://github.com/FouadElOuafy/gestion-personnel" target="_blank" class="project-link">Code source ↗</a>
+        <a href="https://github.com/FouadElOuafy/gestion-personnel" target="_blank" class="project-link">Source code ↗</a>
       </div>
+
       <div class="project-card">
-        <span class="project-id">PROJET // 03</span>
-        <h3>Detection Consultation</h3>
-        <p>Système innovant de vérification et de détection de la légitimité des consultations médicales. Couple un algorithme de classification à une interface sécurisée (JWT) et une base de données légère SQLite.</p>
+        <span class="project-id">PROJECT // 03</span>
+        <h3>Consultation Detection</h3>
+        <p>Innovative system for verifying and detecting the legitimacy of medical consultations. Combines a classification algorithm with a secure JWT interface and lightweight SQLite database.</p>
         <div class="project-tech">
           <span class="tech-tag">Python</span><span class="tech-tag">Flask</span><span class="tech-tag">SQLite</span><span class="tech-tag">React</span><span class="tech-tag">JWT</span>
         </div>
-        <a href="https://github.com/FouadElOuafy/detection-consultation" target="_blank" class="project-link">Code source ↗</a>
+        <a href="https://github.com/FouadElOuafy/detection-consultation" target="_blank" class="project-link">Source code ↗</a>
       </div>
+
       <div class="project-card">
-        <span class="project-id">PROJET // 04</span>
+        <span class="project-id">PROJECT // 04</span>
         <h3>Air Quality Prediction</h3>
-        <p>Outil d'analyse prédictive des microparticules (PM2.5) dans l'air des principales agglomérations marocaines. Exploite l'API OpenWeatherMap pour collecter et corréler les indicateurs en temps réel.</p>
+        <p>Predictive analysis tool for fine particulates (PM2.5) in major Moroccan cities. Uses the OpenWeatherMap API to collect and correlate real-time environmental indicators.</p>
         <div class="project-tech">
           <span class="tech-tag">Python</span><span class="tech-tag">Flask</span><span class="tech-tag">scikit-learn</span><span class="tech-tag">OpenWeatherMap</span>
         </div>
-        <a href="https://github.com/FouadElOuafy/air-quality-morocco" target="_blank" class="project-link">Code source ↗</a>
+        <a href="https://github.com/FouadElOuafy/air-quality-morocco" target="_blank" class="project-link">Source code ↗</a>
       </div>
+
+      <!-- NOUVEAU PROJET -->
+      <div class="project-card featured">
+        <span class="project-id">PROJECT // 05</span>
+        <h3>Hotel Finder — Fès</h3>
+        <p>Full Stack geolocation web application to find hotels in Fès, Morocco. Uses real OpenStreetMap data (114 hotels), stored in a Neo4j graph database with native spatial queries. Features real-time GPS, interactive map, routing with 3 transport modes, and an analytics dashboard.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Neo4j</span><span class="tech-tag">Flask</span><span class="tech-tag">React</span><span class="tech-tag">OpenStreetMap</span><span class="tech-tag">OSRM</span><span class="tech-tag">Leaflet.js</span>
+        </div>
+        <a href="https://github.com/FouadElOuafy/hotel-finder-fes" target="_blank" class="project-link">Source code ↗</a>
+      </div>
+
     </div>
   </section>
 
+  <!-- EDUCATION -->
   <section id="education">
     <div class="section-header">
-      <span class="section-tag">04 / Éducation</span>
-      <h2 class="section-title">Parcours Académique</h2>
+      <span class="section-tag">04 / Education</span>
+      <h2 class="section-title">Academic Background</h2>
     </div>
     <div class="timeline">
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">2025 — Présent</div>
-        <h3 class="timeline-title">Master en Big Data & Systèmes Intelligents (BDSI)</h3>
-        <p class="timeline-school">Université Sidi Mohamed Ben Abdellah, Fès</p>
+        <div class="timeline-date">2025 — Present</div>
+        <h3 class="timeline-title">Master's in Big Data & Intelligent Systems (BDSI)</h3>
+        <p class="timeline-school">Sidi Mohamed Ben Abdellah University, Fès</p>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-date">2024 — 2025</div>
-        <h3 class="timeline-title">Licence SMI (Sciences Mathématiques & Informatique)</h3>
-        <p class="timeline-school">Faculté des Sciences Dhar El Mehraz, Fès</p>
+        <h3 class="timeline-title">Bachelor's in Mathematics & Computer Science (SMI)</h3>
+        <p class="timeline-school">Faculty of Sciences Dhar El Mehraz, Fès</p>
       </div>
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact">
     <div class="section-header">
-      <span class="section-tag">05 / Échange</span>
-      <h2 class="section-title">Restons Connectés</h2>
+      <span class="section-tag">05 / Connect</span>
+      <h2 class="section-title">Let's Talk</h2>
     </div>
     <div class="contact-container">
       <div class="contact-text">
-        <p>Une idée de projet, une offre de stage ou simplement envie de discuter technologies de la data ? N'hésitez pas à me joindre sur les différentes plateformes ou directement via le formulaire.</p>
+        <p>Have a project idea, an internship offer, or just want to talk tech? Feel free to reach out on any platform or directly through the form.</p>
         <div class="contact-list">
           <a href="mailto:elouafyfouad1@gmail.com" class="contact-card">
             <div class="fact-icon">✉️</div>
@@ -411,24 +414,24 @@
       </div>
       <form class="contact-form" action="https://formspree.io/f/mzdwjrjd" method="POST">
         <div class="form-group">
-          <label>Nom Complet</label>
-          <input type="text" name="name" placeholder="Votre nom" required>
+          <label>Full Name</label>
+          <input type="text" name="name" placeholder="Your name" required>
         </div>
         <div class="form-group">
-          <label>Adresse Email</label>
-          <input type="email" name="_replyto" placeholder="votre@email.com" required>
+          <label>Email Address</label>
+          <input type="email" name="_replyto" placeholder="your@email.com" required>
         </div>
         <div class="form-group">
           <label>Message</label>
-          <textarea name="message" rows="5" placeholder="Votre texte ici..." required></textarea>
+          <textarea name="message" rows="5" placeholder="Your message here..." required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="width: fit-content; margin-top: 1rem;">Envoyer le message</button>
+        <button type="submit" class="btn btn-primary" style="width: fit-content; margin-top: 1rem;">Send Message</button>
       </form>
     </div>
   </section>
 
   <footer>
-    Fait avec passion par <span>Fouad El Ouafy</span> &copy; 2026 · Fès, Maroc
+    Crafted with passion by <span>Fouad El Ouafy</span> &copy; 2026 · Fès, Morocco
   </footer>
 
 </body>
