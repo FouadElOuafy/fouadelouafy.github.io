@@ -261,28 +261,6 @@ nav { background: color-mix(in srgb, var(--bg-main) 78%, transparent); }
 @media (max-width: 968px) { nav { padding: 0 1rem; } }
   </style>
 </head>
-  <script>
-  const root = document.documentElement;
-  const modeBtn = document.getElementById('modeBtn');
-  const pals = document.querySelectorAll('.pal');
-
-  function apply(theme, palette) {
-    root.setAttribute('data-theme', theme);
-    root.setAttribute('data-palette', palette);
-    modeBtn.textContent = theme === 'dark' ? '🌙' : '☀️';
-    pals.forEach(p => p.classList.toggle('active', p.dataset.palette === palette));
-    try { localStorage.setItem('theme', theme); localStorage.setItem('palette', palette); } catch (e) {}
-  }
-
-  let theme = 'dark', palette = 'cyan';
-  try { theme = localStorage.getItem('theme') || theme; palette = localStorage.getItem('palette') || palette; } catch (e) {}
-  apply(theme, palette);
-
-  modeBtn.addEventListener('click', () =>
-    apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', root.getAttribute('data-palette')));
-  pals.forEach(p => p.addEventListener('click', () =>
-    apply(root.getAttribute('data-theme'), p.dataset.palette)));
-</script>
 <body>
 
   <nav>
@@ -560,6 +538,27 @@ nav { background: color-mix(in srgb, var(--bg-main) 78%, transparent); }
   <footer>
     Crafted with passion by <span>Fouad El Ouafy</span> &copy; 2026 · Fès, Morocco
   </footer>
+ <script>
+  const root = document.documentElement;
+  const modeBtn = document.getElementById('modeBtn');
+  const pals = document.querySelectorAll('.pal');
 
+  function apply(theme, palette) {
+    root.setAttribute('data-theme', theme);
+    root.setAttribute('data-palette', palette);
+    modeBtn.textContent = theme === 'dark' ? '🌙' : '☀️';
+    pals.forEach(p => p.classList.toggle('active', p.dataset.palette === palette));
+    try { localStorage.setItem('theme', theme); localStorage.setItem('palette', palette); } catch (e) {}
+  }
+
+  let theme = 'dark', palette = 'cyan';
+  try { theme = localStorage.getItem('theme') || theme; palette = localStorage.getItem('palette') || palette; } catch (e) {}
+  apply(theme, palette);
+
+  modeBtn.addEventListener('click', () =>
+    apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', root.getAttribute('data-palette')));
+  pals.forEach(p => p.addEventListener('click', () =>
+    apply(root.getAttribute('data-theme'), p.dataset.palette)));
+</script>
 </body>
 </html>
