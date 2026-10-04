@@ -216,8 +216,73 @@
   .avatar { width: 120px; height: 120px; }
   .hero-title { font-size: clamp(2.5rem, 10vw, 4rem); letter-spacing: -1px; }
 }
+    /* ===== THEME SYSTEM ===== */
+:root { --accent-rgb: 0,242,254; --heading: #fff; --btn-text: #060913; }
+
+[data-palette="violet"]  { --accent-cyan:#a78bfa; --accent-blue:#7c3aed; --accent-rgb:167,139,250; --border-color:rgba(167,139,250,.15); }
+[data-palette="emerald"] { --accent-cyan:#34d399; --accent-blue:#10b981; --accent-rgb:52,211,153;  --border-color:rgba(52,211,153,.15); }
+[data-palette="sunset"]  { --accent-cyan:#fb923c; --accent-blue:#f43f5e; --accent-rgb:251,146,60;  --border-color:rgba(251,146,60,.15); }
+
+/* Light mode */
+[data-theme="light"] {
+  --bg-main:#f8fafc; --bg-surface:rgba(255,255,255,.85); --bg-card:rgba(241,245,249,.95);
+  --text-primary:#0f172a; --text-muted:#475569; --heading:#0f172a; --btn-text:#fff;
+  --accent-cyan:#0891b2; --accent-blue:#2563eb; --accent-rgb:8,145,178; --border-color:rgba(8,145,178,.25);
+}
+[data-theme="light"][data-palette="violet"]  { --accent-cyan:#7c3aed; --accent-blue:#4f46e5; --accent-rgb:124,58,237; --border-color:rgba(124,58,237,.25); }
+[data-theme="light"][data-palette="emerald"] { --accent-cyan:#059669; --accent-blue:#0d9488; --accent-rgb:5,150,105;  --border-color:rgba(5,150,105,.25); }
+[data-theme="light"][data-palette="sunset"]  { --accent-cyan:#ea580c; --accent-blue:#e11d48; --accent-rgb:234,88,12;  --border-color:rgba(234,88,12,.25); }
+
+/* Éléments qui avaient des couleurs fixes */
+body { background-image:
+  radial-gradient(at 0% 0%, rgba(var(--accent-rgb),.08) 0px, transparent 50%),
+  radial-gradient(at 100% 100%, rgba(var(--accent-rgb),.05) 0px, transparent 50%); transition: background-color .3s, color .3s; }
+nav { background: color-mix(in srgb, var(--bg-main) 78%, transparent); }
+.section-title, .skills-card h3, .project-card h3, .fact-value,
+.timeline-title, .contact-details p, .project-link,
+.skills-card:hover .skill-tag { color: var(--heading); }
+.project-link:hover { color: var(--accent-cyan); }
+.btn-primary { color: var(--btn-text); box-shadow: 0 4px 20px rgba(var(--accent-rgb),.2); }
+.fact-icon, .tech-tag { background: rgba(var(--accent-rgb),.08); }
+.hero-status { background: rgba(var(--accent-rgb),.08); border-color: rgba(var(--accent-rgb),.25); }
+.project-card.featured { background: rgba(var(--accent-rgb),.04); }
+.form-group input, .form-group textarea { color: var(--heading); border-color: var(--border-color); }
+.avatar::after { border-color: var(--bg-main); }
+::-webkit-scrollbar-track { background: var(--bg-main); }
+
+/* Boutons de thème */
+.theme-controls { display:flex; align-items:center; gap:10px; }
+.pal { width:18px; height:18px; border-radius:50%; border:2px solid transparent; cursor:pointer; padding:0; transition: transform .2s; }
+.pal:hover { transform: scale(1.2); }
+.pal.active { border-color: var(--heading); }
+#modeBtn { width:36px; height:36px; border-radius:50%; border:1px solid var(--border-color);
+  background:var(--bg-surface); color:var(--heading); cursor:pointer; font-size:16px; transition: all .3s; }
+#modeBtn:hover { border-color: var(--accent-cyan); transform: rotate(20deg); }
+@media (max-width: 968px) { nav { padding: 0 1rem; } }
   </style>
 </head>
+  <script>
+  const root = document.documentElement;
+  const modeBtn = document.getElementById('modeBtn');
+  const pals = document.querySelectorAll('.pal');
+
+  function apply(theme, palette) {
+    root.setAttribute('data-theme', theme);
+    root.setAttribute('data-palette', palette);
+    modeBtn.textContent = theme === 'dark' ? '🌙' : '☀️';
+    pals.forEach(p => p.classList.toggle('active', p.dataset.palette === palette));
+    try { localStorage.setItem('theme', theme); localStorage.setItem('palette', palette); } catch (e) {}
+  }
+
+  let theme = 'dark', palette = 'cyan';
+  try { theme = localStorage.getItem('theme') || theme; palette = localStorage.getItem('palette') || palette; } catch (e) {}
+  apply(theme, palette);
+
+  modeBtn.addEventListener('click', () =>
+    apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', root.getAttribute('data-palette')));
+  pals.forEach(p => p.addEventListener('click', () =>
+    apply(root.getAttribute('data-theme'), p.dataset.palette)));
+</script>
 <body>
 
   <nav>
@@ -229,6 +294,13 @@
       <li><a href="#education">// Education</a></li>
       <li><a href="#contact">// Contact</a></li>
     </ul>
+    <div class="theme-controls">
+      <button class="pal" data-palette="cyan"    style="background:#00f2fe" title="Cyan"></button>
+      <button class="pal" data-palette="violet"  style="background:#a78bfa" title="Violet"></button>
+      <button class="pal" data-palette="emerald" style="background:#34d399" title="Emerald"></button>
+      <button class="pal" data-palette="sunset"  style="background:#fb923c" title="Sunset"></button>
+      <button id="modeBtn" title="Dark / Light">🌙</button>
+    </div>
   </nav>
 
   <div id="hero">
